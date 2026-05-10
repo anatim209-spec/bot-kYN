@@ -509,14 +509,14 @@ export async function claimTicket(channel, claimer) {
     
     const claimEmbed = createEmbed({
       title: 'Ticket Claimed',
-      description: `🎉 ${claimer} has claimed this ticket!`,
+      description: `🎉 ${claimer} استلم هذه التذكرة!`,
       color: '#2ecc71'
     });
     
     const unclaimRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('ticket_unclaim')
-        .setLabel('Unclaim')
+        .setLabel('ترك الاستلام')
         .setStyle(ButtonStyle.Secondary)
         .setEmoji('🔓')
     );
@@ -824,7 +824,7 @@ export async function deleteTicket(channel, deleter) {
     
     const deleteEmbed = createEmbed({
       title: 'Ticket Deleted',
-      description: `🗑️ This ticket will be permanently deleted in ${TICKET_DELETE_DELAY_SECONDS} seconds.`,
+      description: `🗑️ سوف يتم حذف هذه التذكرة من قِبل ${TICKET_DELETE_DELAY_SECONDS} seconds.`,
       color: '#e74c3c',
       footer: { text: `Ticket ID: ${ticketData.id}` }
     });
@@ -1038,7 +1038,7 @@ export async function unclaimTicket(channel, unclaimer) {
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId('ticket_close')
-          .setLabel('Close Ticket')
+          .setLabel('اغلاق التذكرة')
           .setStyle(ButtonStyle.Danger)
           .setEmoji('🔒'),
         new ButtonBuilder()
@@ -1077,8 +1077,8 @@ export async function unclaimTicket(channel, unclaimer) {
       });
     } else {
       const unclaimEmbed = createEmbed({
-        title: 'Ticket Unclaimed',
-        description: `🔓 ${unclaimer} has unclaimed this ticket!`,
+        title: 'ترك التذكرةd',
+        description: `🔓 ${unclaimer} ترك استلام التذكرة!`,
         color: '#f39c12'
       });
       
