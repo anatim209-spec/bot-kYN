@@ -38,32 +38,32 @@ const ACTIVITY_NAMES = {
 export default {
     data: new SlashCommandBuilder()
         .setName('activity')
-        .setDescription('Start a Discord Activity in your voice channel')
+        .setDescription('ابدأ الفعالية في قناتك الصوتية')
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Connect)
         
         .addSubcommand(subcommand =>
             subcommand
                 .setName('youtube')
-                .setDescription('Watch YouTube videos together in a voice channel')
+                .setDescription('شاهد فيديوهات في قناتك الصوتية')
         )
         
         .addSubcommand(subcommand =>
             subcommand
                 .setName('poker')
-                .setDescription('Play Poker Night with friends')
+                .setDescription('لعبة البلوت')
         )
         
         .addSubcommand(subcommand =>
             subcommand
                 .setName('chess')
-                .setDescription('Play Chess in the Park')
+                .setDescription('لعبة شطرنج')
         )
         
         .addSubcommand(subcommand =>
             subcommand
                 .setName('checkers')
-                .setDescription('Play Checkers in the Park')
+                .setDescription('لعبة الداما')
         )
         
         .addSubcommand(subcommand =>
@@ -81,19 +81,19 @@ export default {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('sketch')
-                .setDescription('Play Sketch Heads (Pictionary style)')
+                .setDescription('لعبة رسم (Pictionary style)')
         )
         
         .addSubcommand(subcommand =>
             subcommand
                 .setName('blazing8s')
-                .setDescription('Play the card game Blazing 8s')
+                .setDescription('العب لعبة الورق Blazing 8s')
         )
         
         .addSubcommand(subcommand =>
             subcommand
                 .setName('puttparty')
-                .setDescription('Play Putt Party (Mini-golf)')
+                .setDescription('لعبة جولف صغيرة (Mini-golf)')
         )
         
         .addSubcommand(subcommand =>
