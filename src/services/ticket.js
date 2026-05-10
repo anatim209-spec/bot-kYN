@@ -299,7 +299,7 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
           const dmEmbed = createEmbed({
             title: '🎫 تم اغلاق تذكرتك',
             description: `تم اغلاق تذكرتك**${channel.name}** .\n\n**Reason:** ${reason}\n**Closed by:** ${closer.tag}\n**Closed at:** <t:${Math.floor(Date.now() / 1000)}:F>\n\nThank you for using our support system! If you have any further questions, feel free to create a new ticket.`,
-            color: '#e74c3c',
+            color: '#ed0000',
             footer: { text: `Ticket ID: ${ticketData.id}` }
           });
 
@@ -387,7 +387,7 @@ components: []
     const closeEmbed = createEmbed({
       title: 'تم اغلاق تذكرتك',
       description: `تم اغلاق هذه التذكرة من قِبل ${closer}.\n**بسبب:** ${reason}${dmOnClose ? '\n\n📩تم ارسال رسالة خاصة الى منشئ التذكرة' : ''}`,
-      color: '#e74c3c',
+      color: '#ed0000',
       footer: { text: `Ticket ID: ${ticketData.id}` }
     });
     
@@ -1038,12 +1038,12 @@ export async function unclaimTicket(channel, unclaimer) {
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId('ticket_close')
-          .setLabel('Close Ticket')
+          .setLabel(`اغلاق التذكرة')
           .setStyle(ButtonStyle.Danger)
           .setEmoji('🔒'),
         new ButtonBuilder()
           .setCustomId('ticket_claim')
-          .setLabel('Claim')
+          .setLabel('استلام')
           .setStyle(ButtonStyle.Primary)
           .setEmoji('🙋'),
         new ButtonBuilder()
