@@ -647,12 +647,12 @@ export async function reopenTicket(channel, reopener) {
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId('ticket_close')
-          .setLabel('Close Ticket')
+          .setLabel('اغلاق التذكرة')
           .setStyle(ButtonStyle.Danger)
           .setEmoji('🔒'),
         new ButtonBuilder()
           .setCustomId('ticket_claim')
-          .setLabel(ticketData.claimedBy ? 'Claimed' : 'Claim')
+          .setLabel(ticketData.claimedBy ? 'مستلم' : 'استلام')
           .setStyle(ticketData.claimedBy ? ButtonStyle.Secondary : ButtonStyle.Primary)
           .setEmoji('🙋')
           .setDisabled(!!ticketData.claimedBy),
@@ -671,7 +671,7 @@ export async function reopenTicket(channel, reopener) {
     
     const reopenEmbed = createEmbed({
       title: 'Ticket Reopened',
-      description: `🔓 ${reopener} has reopened this ticket!`,
+      description: `🔓 ${reopener} تم اعادة فتح التذكرة!`,
       color: '#2ecc71'
     });
 
