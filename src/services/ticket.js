@@ -80,7 +80,7 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
     if (currentTicketCount >= maxTicketsPerUser) {
       return {
         success: false,
-        error: `You have reached the maximum number of open tickets (${maxTicketsPerUser}). Please close your existing tickets before creating a new one.`
+        error: `لقد حصلت الى الحد الاقصى لعدد التذاكر المفتوحة (${maxTicketsPerUser}).يرجى اغلاق تذاكرك الحالية قبل انشاء التذكرة.`
       };
     }
     
@@ -162,7 +162,7 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
     
     const embed = createEmbed({
       title: `Ticket #${ticketNumber}`,
-      description: `${member.toString()}, thanks for creating a ticket!\n\n**Reason:** ${reason}\n**Priority:** ${priorityInfo.emoji} ${priorityInfo.label}`,
+      description: `${member.toString()}, اكتب مشكلتك وسوف يتم الرد عليك باسرع وقت ممكن!\n\n**Reason:** ${reason}\n**Priority:** ${priorityInfo.emoji} ${priorityInfo.label}`,
       color: priorityInfo.color,
       fields: [
         { name: 'Status', value: '🟢 Open', inline: true },
@@ -174,17 +174,17 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('ticket_close')
-        .setLabel('Close Ticket')
+        .setLabel('اغلاق التذكرة')
         .setStyle(ButtonStyle.Danger)
         .setEmoji('🔒'),
       new ButtonBuilder()
         .setCustomId('ticket_claim')
-        .setLabel('Claim')
+        .setLabel('استلام')
         .setStyle(ButtonStyle.Primary)
         .setEmoji('🙋'),
       new ButtonBuilder()
         .setCustomId('ticket_pin')
-        .setLabel('Pin')
+        .setLabel('تذبيت')
         .setStyle(ButtonStyle.Secondary)
         .setEmoji('📌')
     );
@@ -297,8 +297,8 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
         const ticketCreator = await channel.client.users.fetch(ticketData.userId).catch(() => null);
         if (ticketCreator) {
           const dmEmbed = createEmbed({
-            title: '🎫 Your Ticket Has Been Closed',
-            description: `Your ticket **${channel.name}** has been closed.\n\n**Reason:** ${reason}\n**Closed by:** ${closer.tag}\n**Closed at:** <t:${Math.floor(Date.now() / 1000)}:F>\n\nThank you for using our support system! If you have any further questions, feel free to create a new ticket.`,
+            title: '🎫 تم اغلاق التذكرة',
+            description: `تم اغلاق تذكرتك **${channel.name}** has been closed.\n\n**Reason:** ${reason}\n**Closed by:** ${closer.tag}\n**Closed at:** <t:${Math.floor(Date.now() / 1000)}:F>\n\nنرجوا ان تم حل مشكلتك !.`,
             color: '#e74c3c',
             footer: { text: `Ticket ID: ${ticketData.id}` }
           });
@@ -313,15 +313,9 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
               color: '#F1C40F',
               footer: { text: 'Your feedback helps us improve.' },
             });
-
+  
             const base = `ticket_feedback:${channel.guild.id}:${channel.id}`;
             const starsRow = new ActionRowBuilder().addComponents(
-              new ButtonBuilder().setCustomId(`${base}:1`).setLabel('⭐ 1').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:2`).setLabel('⭐⭐ 2').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:3`).setLabel('⭐⭐⭐ 3').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:4`).setLabel('⭐⭐⭐⭐ 4').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:5`).setLabel('⭐⭐⭐⭐⭐ 5').setStyle(ButtonStyle.Secondary),
-            );
             const declineRow = new ActionRowBuilder().addComponents(
               new ButtonBuilder()
                 .setCustomId(`ticket_feedback_decline:${channel.guild.id}:${channel.id}`)
@@ -393,8 +387,8 @@ components: []
     }
     
     const closeEmbed = createEmbed({
-      title: 'Ticket Closed',
-      description: `This ticket has been closed by ${closer}.\n**Reason:** ${reason}${dmOnClose ? '\n\n📩 A DM has been sent to the ticket creator.' : ''}`,
+      title: 'تم اغلاق التذكرة',
+      description: `تم اغلاق هذي التذكرة من قِبل ${closer}.\n**Reason:** ${reason}${dmOnClose ? '\n\n📩 تم ارسال رسالة خاصة الى منشئ التذكرة.' : ''}`,
       color: '#e74c3c',
       footer: { text: `Ticket ID: ${ticketData.id}` }
     });
@@ -402,12 +396,12 @@ components: []
     const controlRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('ticket_reopen')
-        .setLabel('Reopen Ticket')
+        .setLabel('اعادة فتح التذكرة')
         .setStyle(ButtonStyle.Success)
         .setEmoji('🔓'),
       new ButtonBuilder()
         .setCustomId('ticket_delete')
-        .setLabel('Delete Ticket')
+        .setLabel('حذف التذكرة')
         .setStyle(ButtonStyle.Danger)
         .setEmoji('🗑️')
     );
@@ -517,14 +511,14 @@ export async function claimTicket(channel, claimer) {
     
     const claimEmbed = createEmbed({
       title: 'Ticket Claimed',
-      description: `🎉 ${claimer} has claimed this ticket!`,
+      description: `🎉 ${claimer}استلم هذه التذكرة!`,
       color: '#2ecc71'
     });
     
     const unclaimRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('ticket_unclaim')
-        .setLabel('Unclaim')
+        .setLabel('ترك الاستلام')
         .setStyle(ButtonStyle.Secondary)
         .setEmoji('🔓')
     );
@@ -950,13 +944,13 @@ export async function deleteTicket(channel, deleter) {
         // Delete the channel (regardless of transcript success)
         try {
           await channel.delete('Ticket deleted permanently');
-          logger.info('✅ Channel deleted', {
+          logger.info('✅ التذكرة انحذفت', {
             channelId: channel.id,
             channelName: channel.name,
             ticketNumber: ticketData.id
           });
         } catch (deleteError) {
-          logger.error('❌ Failed to delete ticket channel:', {
+          logger.error('❌ خطأ في حذف التذكرة:', {
             channelId: channel.id,
             channelName: channel.name,
             ticketNumber: ticketData.id,
