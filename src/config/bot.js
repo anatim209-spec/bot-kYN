@@ -25,7 +25,7 @@ export const botConfig = {
     activities: [
       {
         // Text users will see (example: "Playing /help | Titan Bot").
-        name: "Made with ❤️",
+        name: "Made with 𝑲𝒚𝒓𝒐 (li.6l) ❤️",
         // Activity type number (0 = Playing).
         type: 0, 
       },
@@ -63,7 +63,7 @@ export const botConfig = {
 
     // Embed colors by application status.
     statusColors: {
-      pending: "#FFA500",
+      pending: "#710193",
       approved: "#00FF00",
       denied: "#FF0000",
     },
@@ -116,7 +116,7 @@ export const botConfig = {
         ended: "#ED4245",
       },
       ticket: {
-        open: "#57F287",
+        open: "#630436",
         claimed: "#FAA61A",
         closed: "#ED4245",
         pending: "#99AAB5",
