@@ -393,13 +393,13 @@ components: []
     
     const controlRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setCustomId('tاعادة فتح التذكرة')
-        .setLabel('Reopen Ticket')
+        .setCustomId('Reopen Ticket')
+        .setLabel('اعادة فتح التذكرة')
         .setStyle(ButtonStyle.Success)
         .setEmoji('🔓'),
       new ButtonBuilder()
-        .setCustomId('حذف التذكرة')
-        .setLabel('Delete Ticket')
+        .setCustomId('Delete Ticket')
+        .setLabel('حذف التذكرة')
         .setStyle(ButtonStyle.Danger)
         .setEmoji('🗑️')
     );
@@ -459,7 +459,7 @@ export async function claimTicket(channel, claimer) {
     if (ticketData.claimedBy) {
       return { 
         success: false, 
-        error: `This ticket is already claimed by <@${ticketData.claimedBy}>` 
+        error: `هذه التذكرة مستلمة بالفعل من <@${ticketData.claimedBy}>` 
       };
     }
     
@@ -824,7 +824,7 @@ export async function deleteTicket(channel, deleter) {
     
     const deleteEmbed = createEmbed({
       title: 'Ticket Deleted',
-      description: `🗑️ This ticket will be permanently deleted in ${TICKET_DELETE_DELAY_SECONDS} seconds.`,
+      description: `🗑️سوف يتم حذف التذكرة بعد ${TICKET_DELETE_DELAY_SECONDS} ثواني.`,
       color: '#e74c3c',
       footer: { text: `Ticket ID: ${ticketData.id}` }
     });
@@ -1067,7 +1067,7 @@ export async function unclaimTicket(channel, unclaimer) {
     if (claimMessage) {
       const unclaimEmbed = createEmbed({
         title: 'Ticket Unclaimed',
-        description: `🔓 ${unclaimer} has unclaimed this ticket!`,
+        description: `🔓 ${unclaimer} ترك استلام التذكرة!`,
         color: '#f39c12'
       });
       
@@ -1078,7 +1078,7 @@ export async function unclaimTicket(channel, unclaimer) {
     } else {
       const unclaimEmbed = createEmbed({
         title: 'Ticket Unclaimed',
-        description: `🔓 ${unclaimer} has unclaimed this ticket!`,
+        description: `🔓 ${unclaimer} ترك استلام التذكرة!`,
         color: '#f39c12'
       });
       
