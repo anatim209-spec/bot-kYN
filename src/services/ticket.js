@@ -1038,7 +1038,7 @@ export async function unclaimTicket(channel, unclaimer) {
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId('ticket_close')
-          .setLabel(`اغلاق التذكرة')
+          .setLabel('اغلاق التذكرة')
           .setStyle(ButtonStyle.Danger)
           .setEmoji('🔒'),
         new ButtonBuilder()
