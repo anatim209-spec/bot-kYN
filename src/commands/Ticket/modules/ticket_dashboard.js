@@ -44,24 +44,24 @@ function buildDashboardEmbed(config, guild) {
     const btnLabel = `\`${config.ticketButtonLabel || 'Create Ticket'}\``;
 
     return new EmbedBuilder()
-        .setTitle('🎫 Ticket System Dashboard')
-        .setDescription(`Manage ticket system settings for **${guild.name}**.\nSelect an option below to modify a setting.`)
+        .setTitle('🎫 تذاكر الدعم الفني')
+        .setDescription(`ادارة اعدادات نظام التذاكر ل **${guild.name}**.\nحدد الخيارات التالية لتعديل الاعدادات.`)
         .setColor(getColor('info'))
         .addFields(
-            { name: '📢 Panel Channel', value: panelChannel, inline: true },
-            { name: '🛡️ Staff Role', value: staffRole, inline: true },
+            { name: '📢 قناة اللوحة', value: panelChannel, inline: true },
+            { name: '🛡️ رتب الادارة', value: staffRole, inline: true },
             { name: '\u200B', value: '\u200B', inline: true },
-            { name: '📁 Open Tickets Category', value: openCategory, inline: true },
-            { name: '📂 Closed Tickets Category', value: closedCategory, inline: true },
+            { name: '📁 قناة انشاء التذاكر', value: openCategory, inline: true },
+            { name: '📂 قناة تقفيل التذاكر', value: closedCategory, inline: true },
             { name: '\u200B', value: '\u200B', inline: true },
-            { name: '📝 Panel Message', value: panelMsg, inline: false },
-            { name: '🏷️ Button Label', value: btnLabel, inline: true },
-            { name: '🔢 Max Tickets/User', value: String(config.maxTicketsPerUser || 3), inline: true },
-            { name: '📬 DM on Close', value: config.dmOnClose !== false ? '✅ Enabled' : '❌ Disabled', inline: true },
-            { name: '🎫 Ticket Logs Channel', value: ticketLogsChannel, inline: true },
-            { name: '📜 Transcript Channel', value: transcriptChannel, inline: true },
+            { name: '📝 رسالة اللوحة', value: panelMsg, inline: false },
+            { name: '🏷️ زر الانشاء', value: btnLabel, inline: true },
+            { name: '🔢 عدد التذاكر, للشخص ', value: String(config.maxTicketsPerUser || 3), inline: true },
+            { name: '📬 رسالة بالخاص عند الاغلاق', value: config.dmOnClose !== false ? '✅ Enabled' : '❌ Disabled', inline: true },
+            { name: '🎫 رسائل السجلات', value: ticketLogsChannel, inline: true },
+            { name: '📜 قناة النسخ', value: transcriptChannel, inline: true },
         )
-        .setFooter({ text: 'Select an option below • Dashboard closes after 10 minutes of inactivity' })
+        .setFooter({ text: 'حدد الخيارات التالية • سيتم اغلاق لوحة التحكم بعد 10 دقائق من عدم النشاط' })
         .setTimestamp();
 }
 
@@ -467,9 +467,9 @@ async function handleStaffRole(selectInteraction, rootInteraction, guildConfig, 
     await selectInteraction.followUp({
         embeds: [
             new EmbedBuilder()
-                .setTitle('🛡️ Change Staff Role')
+                .setTitle('🛡️ تغير رتبة ادارة التذاكر')
                 .setDescription(
-                    `**Current:** ${guildConfig.ticketStaffRoleId ? `<@&${guildConfig.ticketStaffRoleId}>` : '`Not set`'}\n\nSelect the role that should have staff access to manage tickets.`,
+                    `**Current:** ${guildConfig.ticketStaffRoleId ? `<@&${guildConfig.ticketStaffRoleId}>` : '`Not set`'}\n\nاختار الرتبة التي تتمكن من وصول لادارة التاكر (الرتب المستلمة).`,
                 )
                 .setColor(getColor('info')),
         ],
@@ -493,7 +493,7 @@ async function handleStaffRole(selectInteraction, rootInteraction, guildConfig, 
         await client.db.set(getGuildConfigKey(guildId), guildConfig);
 
         await roleInteraction.followUp({
-            embeds: [successEmbed('✅ Staff Role Updated', `Staff role set to ${role}.`)],
+            embeds: [successEmbed('✅ تم تحديت رتبة الادارة', `تغير رتبة الادارة الى ${role}.`)],
             flags: MessageFlags.Ephemeral,
         });
 
@@ -528,9 +528,9 @@ async function handleOpenCategory(selectInteraction, rootInteraction, guildConfi
     await selectInteraction.followUp({
         embeds: [
             new EmbedBuilder()
-                .setTitle('📁 Change Open Tickets Category')
+                .setTitle('📁 تغيير مكان فتح التذكرة')
                 .setDescription(
-                    `**Current:** ${guildConfig.ticketCategoryId ? `<#${guildConfig.ticketCategoryId}>` : '`Not set`'}\n\nSelect the category where new tickets will be created.`,
+                    `**Current:** ${guildConfig.ticketCategoryId ? `<#${guildConfig.ticketCategoryId}>` : '`Not set`'}\n\nاختار المكلن الذي تريد فتح فيه التذاكر.`,
                 )
                 .setColor(getColor('info')),
         ],
@@ -557,7 +557,7 @@ async function handleOpenCategory(selectInteraction, rootInteraction, guildConfi
             embeds: [
                 successEmbed(
                     '✅ Open Category Updated',
-                    `New tickets will now be created in **${category.name}**.`,
+                    `سيتم انشاء التذاكر الجديدة في  **${category.name}**.`,
                 ),
             ],
             flags: MessageFlags.Ephemeral,
@@ -602,9 +602,9 @@ async function handleClosedCategory(
     await selectInteraction.followUp({
         embeds: [
             new EmbedBuilder()
-                .setTitle('📂 Change Closed Tickets Category')
+                .setTitle('📂 تغيير مكان اغلاق التذاكر')
                 .setDescription(
-                    `**Current:** ${guildConfig.ticketClosedCategoryId ? `<#${guildConfig.ticketClosedCategoryId}>` : '`Not set`'}\n\nSelect the category where closed tickets will be moved.`,
+                    `**Current:** ${guildConfig.ticketClosedCategoryId ? `<#${guildConfig.ticketClosedCategoryId}>` : '`Not set`'}\n\nاختار المكان التي تريد فيه اغلاق التذاكر.`,
                 )
                 .setColor(getColor('info')),
         ],
@@ -631,7 +631,7 @@ async function handleClosedCategory(
             embeds: [
                 successEmbed(
                     '✅ Closed Category Updated',
-                    `Closed tickets will now be moved to **${category.name}**.`,
+                    `سيتم اغلاق التذاكر الجيدة في **${category.name}**.`,
                 ),
             ],
             flags: MessageFlags.Ephemeral,
@@ -659,12 +659,12 @@ async function handleClosedCategory(
 async function handleMaxTickets(selectInteraction, rootInteraction, guildConfig, guildId, client) {
     const modal = new ModalBuilder()
         .setCustomId('ticket_cfg_max_tickets')
-        .setTitle('Set Max Tickets per User')
+        .setTitle('تغيير الحد الاقصى لتذاكر المستخدم')
         .addComponents(
             new ActionRowBuilder().addComponents(
                 new TextInputBuilder()
                     .setCustomId('max_tickets_input')
-                    .setLabel('Max Open Tickets (1–10)')
+                    .setLabel('عدد التذاكر للمستخدم (1-15)')
                     .setStyle(TextInputStyle.Short)
                     .setValue(String(guildConfig.maxTicketsPerUser || 3))
                     .setMaxLength(2)
@@ -687,11 +687,11 @@ async function handleMaxTickets(selectInteraction, rootInteraction, guildConfig,
     if (!submitted) return;
 
     const raw = submitted.fields.getTextInputValue('max_tickets_input').trim();
-    const newMax = parseInt(raw, 10);
+    const newMax = parseInt(raw, 15);
 
-    if (isNaN(newMax) || newMax < 1 || newMax > 10) {
+    if (isNaN(newMax) || newMax < 1 || newMax > 15) {
         await submitted.reply({
-            embeds: [errorEmbed('Invalid Value', 'Max tickets must be a whole number between **1** and **10**.')],
+            embeds: [errorEmbed('Invalid Value', 'Max tickets must be a whole number between **1** and **15**.')],
             flags: MessageFlags.Ephemeral,
         });
         return;
@@ -703,8 +703,8 @@ async function handleMaxTickets(selectInteraction, rootInteraction, guildConfig,
     await submitted.reply({
         embeds: [
             successEmbed(
-                '✅ Max Tickets Updated',
-                `Users can now have at most **${newMax}** open ticket${newMax !== 1 ? 's' : ''} at a time.`,
+                '✅ تم تعيين الحد الاقصى للتذاكر',
+                `المستخدم يمتلك الان **${newMax}** فتح تذاكر${newMax !== 1 ? 's' : ''} في الوقت.`,
             ),
         ],
         flags: MessageFlags.Ephemeral,
@@ -725,8 +725,8 @@ async function handleDmOnClose(btnInteraction, rootInteraction, guildConfig, gui
     await btnInteraction.followUp({
         embeds: [
             successEmbed(
-                '✅ DM on Close Updated',
-                `Users will **${newState ? 'now' : 'no longer'}** receive a DM when their ticket is closed.`,
+                '✅ ارسال رسالة خاصة عند الاغلاق',
+                `المستخدم سوف **${newState ? 'now' : 'no longer'}** يتم ارسال رسالة خاصة عند اغلاق التذاكر.`,
             ),
         ],
         flags: MessageFlags.Ephemeral,
@@ -749,8 +749,8 @@ async function handleLogsChannel(selectInteraction, rootInteraction, guildConfig
     await selectInteraction.followUp({
         embeds: [
             new EmbedBuilder()
-                .setTitle('🎫 Select Ticket Logs Channel')
-                .setDescription('Choose where ticket feedback, lifecycle events (open, close, claim, etc.), and other logs will be sent.')
+                .setTitle('🎫 اختر مكان سيتم ارسال فيه الملاحظات و السجلات')
+                .setDescription('اختر قناة سيتم ارسال ملاحظات فيها, و الاحداث(فتح, اغلاق, استلام, الخ.), والسجلات الاخرى .')
                 .setColor(getColor('info'))
         ],
         components: [new ActionRowBuilder().addComponents(channelSelect)],
@@ -772,7 +772,7 @@ async function handleLogsChannel(selectInteraction, rootInteraction, guildConfig
         await client.db.set(getGuildConfigKey(guildId), guildConfig);
 
         await channelInteraction.followUp({
-            embeds: [successEmbed('✅ Logs Channel Updated', `Ticket logs will be sent to ${channel}`)],
+            embeds: [successEmbed('✅ تم تحديد قناة الملاحظات و السجلات', `سيتم ارسال السجلات في ${channel}`)],
             flags: MessageFlags.Ephemeral
         });
 
@@ -803,8 +803,8 @@ async function handleTranscriptChannel(selectInteraction, rootInteraction, guild
     await selectInteraction.followUp({
         embeds: [
             new EmbedBuilder()
-                .setTitle('📜 Select Transcript Channel')
-                .setDescription('Choose where auto-generated transcripts will be sent when tickets are deleted.')
+                .setTitle('📜 حدد قناة النسخ')
+                .setDescription('اختر مكان الذي سيتم ارسال النسخ التي تم انشاؤها تلقائيا اليه عند حذف التذاكر.')
                 .setColor(getColor('info'))
         ],
         components: [new ActionRowBuilder().addComponents(channelSelect)],
@@ -826,7 +826,7 @@ async function handleTranscriptChannel(selectInteraction, rootInteraction, guild
         await client.db.set(getGuildConfigKey(guildId), guildConfig);
 
         await channelInteraction.followUp({
-            embeds: [successEmbed('✅ Transcript Channel Updated', `Transcripts will be sent to ${channel}`)],
+            embeds: [successEmbed('✅ تم تعيين سيرفر النسخ للتذاكر', `سيتم ارسال نسخ الى ${channel}`)],
             flags: MessageFlags.Ephemeral
         });
 
