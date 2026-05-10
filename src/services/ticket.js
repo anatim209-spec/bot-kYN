@@ -393,12 +393,12 @@ components: []
     
     const controlRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setCustomId('Reopen Ticket')
+        .setCustomId('ticket_reopen')
         .setLabel('اعادة فتح التذكرة')
         .setStyle(ButtonStyle.Success)
         .setEmoji('🔓'),
       new ButtonBuilder()
-        .setCustomId('Delete Ticket')
+        .setCustomId('ticket_delete')
         .setLabel('حذف التذكرة')
         .setStyle(ButtonStyle.Danger)
         .setEmoji('🗑️')
