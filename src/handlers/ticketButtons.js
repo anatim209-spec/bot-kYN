@@ -135,9 +135,9 @@ const createTicketHandler = {
 
       const reasonInput = new TextInputBuilder()
         .setCustomId('reason')
-        .setLabel('ما سبب انشاء تذكرتك?')
+        .setLabel('؟ما سبب انشاء تذكرتك')
         .setStyle(TextInputStyle.Paragraph)
-        .setPlaceholder('Describe your issue...')
+        .setPlaceholder('اذكر مشكلتك...')
         .setRequired(true)
         .setMaxLength(1000);
 
