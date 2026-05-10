@@ -135,7 +135,7 @@ const createTicketHandler = {
 
       const reasonInput = new TextInputBuilder()
         .setCustomId('reason')
-        .setLabel('Why are you creating this ticket?')
+        .setLabel('ما سبب انشاء تذكرتك?')
         .setStyle(TextInputStyle.Paragraph)
         .setPlaceholder('Describe your issue...')
         .setRequired(true)
@@ -232,9 +232,9 @@ const closeTicketHandler = {
 
       const reasonInput = new TextInputBuilder()
         .setCustomId('reason')
-        .setLabel('Reason for closing (optional)')
+        .setLabel('سبب الاغلاق (اختياري)')
         .setStyle(TextInputStyle.Paragraph)
-        .setPlaceholder('Add an optional reason for closing this ticket...')
+        .setPlaceholder('اضف سبب اختياري لاغلاق التكرة ...')
         .setRequired(false)
         .setMaxLength(1000);
 
