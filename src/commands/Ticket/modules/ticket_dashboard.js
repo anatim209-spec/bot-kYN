@@ -664,7 +664,7 @@ async function handleMaxTickets(selectInteraction, rootInteraction, guildConfig,
             new ActionRowBuilder().addComponents(
                 new TextInputBuilder()
                     .setCustomId('max_tickets_input')
-                    .setLabel('عدد التذاكر للمستخدم (1-15)')
+                    .setLabel('عدد التذاكر للمستخدم (1-30)')
                     .setStyle(TextInputStyle.Short)
                     .setValue(String(guildConfig.maxTicketsPerUser || 3))
                     .setMaxLength(2)
@@ -687,9 +687,9 @@ async function handleMaxTickets(selectInteraction, rootInteraction, guildConfig,
     if (!submitted) return;
 
     const raw = submitted.fields.getTextInputValue('max_tickets_input').trim();
-    const newMax = parseInt(raw, 15);
+    const newMax = parseInt(raw, 30);
 
-    if (isNaN(newMax) || newMax < 1 || newMax > 15) {
+    if (isNaN(newMax) || newMax < 1 || newMax > 30) {
         await submitted.reply({
             embeds: [errorEmbed('Invalid Value', 'Max tickets must be a whole number between **1** and **15**.')],
             flags: MessageFlags.Ephemeral,
