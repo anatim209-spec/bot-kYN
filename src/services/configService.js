@@ -58,7 +58,7 @@ const ConfigValueSchemas = Object.freeze({
     logChannelId: z.union([z.string().min(1), z.object({ id: z.string().min(1) })]),
     reportChannelId: z.union([z.string().min(1), z.object({ id: z.string().min(1) })]),
     premiumRoleId: z.union([z.string().min(1), z.object({ id: z.string().min(1) })]),
-    autoRole: z.union([z.string().min(1), z.object({ id: z.string().min(1) })]),
+    autoRole: z.union([z.string().min(3), z.object({ id: z.string().min(3) })]),
     modRole: z.union([z.string().min(1), z.object({ id: z.string().min(1) })]),
     adminRole: z.union([z.string().min(1), z.object({ id: z.string().min(1) })]),
     prefix: z.string().min(1).max(10),
