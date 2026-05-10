@@ -74,13 +74,13 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
     const config = await getGuildConfig(guild.client, guild.id);
     const ticketConfig = config.tickets || {};
     
-    const maxTicketsPerUser = config.maxTicketsPerUser ?? 10;
+    const maxTicketsPerUser = config.maxTicketsPerUser ?? 3;
     const currentTicketCount = await getUserTicketCount(guild.id, member.id);
     
     if (currentTicketCount >= maxTicketsPerUser) {
       return {
         success: false,
-        error: `لقد حصلت الى الحد الاقصى لعدد التذاكر المفتوحة (${maxTicketsPerUser}). يرجى اغلاق تذاكرك الحالية قبل انشاء التذكرة.`
+        error: `You have reached the maximum number of open tickets (${maxTicketsPerUser}). Please close your existing tickets before creating a new one.`
       };
     }
     
@@ -174,7 +174,7 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('ticket_close')
-        .setLabel('اغلاق التذكرة')
+        .setLabel('اعلاق التذكرة')
         .setStyle(ButtonStyle.Danger)
         .setEmoji('🔒'),
       new ButtonBuilder()
@@ -297,8 +297,8 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
         const ticketCreator = await channel.client.users.fetch(ticketData.userId).catch(() => null);
         if (ticketCreator) {
           const dmEmbed = createEmbed({
-            title: '🎫 تم اغلاق التذكرة ',
-            description: `تم اغلاق تذكرتك**${channel.name}** .\n\n**Reason:** ${reason}\n**Closed by:** ${closer.tag}\n**Closed at:** <t:${Math.floor(Date.now() / 1000)}:F>\n\nنرجوا ان تم حل مشكلتك.`,
+            title: '🎫 تم اغلاق تذكرتك',
+            description: `تم اغلاق تذكرتك**${channel.name}** .\n\n**Reason:** ${reason}\n**Closed by:** ${closer.tag}\n**Closed at:** <t:${Math.floor(Date.now() / 1000)}:F>\n\nThank you for using our support system! If you have any further questions, feel free to create a new ticket.`,
             color: '#e74c3c',
             footer: { text: `Ticket ID: ${ticketData.id}` }
           });
@@ -313,10 +313,7 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
               color: '#F1C40F',
               footer: { text: 'Your feedback helps us improve.' },
             });
-
-            const base = `ticket_feedback:${channel.guild.id}:${channel.id}`;
-            const starsRow = new ActionRowBuilder().addComponents(
-            );
+            
             const declineRow = new ActionRowBuilder().addComponents(
               new ButtonBuilder()
                 .setCustomId(`ticket_feedback_decline:${channel.guild.id}:${channel.id}`)
@@ -388,21 +385,21 @@ components: []
     }
     
     const closeEmbed = createEmbed({
-      title: 'تم اغلاق التذكرة',
-      description: `تم اغلاق هذي التذكرة من قِبل ${closer}.\n**Reason:** ${reason}${dmOnClose ? '\n\n📩 تم ارسال رسالة خاصة الى منشئ التذكرة.' : ''}`,
+      title: 'تم اغلاق تذكرتك',
+      description: `تم اغلاق هذه التذكرة من قِبل ${closer}.\n**بسبب:** ${reason}${dmOnClose ? '\n\n📩تم ارسال رسالة خاصة الى منشئ التذكرة' : ''}`,
       color: '#e74c3c',
       footer: { text: `Ticket ID: ${ticketData.id}` }
     });
     
     const controlRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setCustomId('ticket_reopen')
-        .setLabel('اعادة فتح التذكرة')
+        .setCustomId('tاعادة فتح التذكرة')
+        .setLabel('Reopen Ticket')
         .setStyle(ButtonStyle.Success)
         .setEmoji('🔓'),
       new ButtonBuilder()
-        .setCustomId('ticket_delete')
-        .setLabel('حذف التذكرة')
+        .setCustomId('حذف التذكرة')
+        .setLabel('Delete Ticket')
         .setStyle(ButtonStyle.Danger)
         .setEmoji('🗑️')
     );
@@ -433,8 +430,8 @@ components: []
     const typedError = ensureTypedServiceError(error, {
       service: 'ticketService',
       operation: 'closeTicket',
-      message: 'فشلت عملية التذكرة: closeTicket',
-      userMessage: 'خطأ في حذف التذكرة , يجب ان تجرب مرة أُخرى في وقت لاحق.',
+      message: 'Ticket operation failed: closeTicket',
+      userMessage: 'Failed to close ticket. Please try again in a moment.',
       context: { guildId: channel?.guild?.id, channelId: channel?.id, closerId: closer?.id }
     });
     logger.error('Error closing ticket:', {
@@ -456,13 +453,13 @@ export async function claimTicket(channel, claimer) {
   try {
     const ticketData = await getTicketData(channel.guild.id, channel.id);
     if (!ticketData) {
-      return { success: false, error: 'هذي ليست قناة التذاكر' };
+      return { success: false, error: 'This is not a ticket channel' };
     }
     
     if (ticketData.claimedBy) {
       return { 
         success: false, 
-        error: `هذي التذكرة مستلمة بالفعل <@${ticketData.claimedBy}>` 
+        error: `This ticket is already claimed by <@${ticketData.claimedBy}>` 
       };
     }
     
@@ -488,12 +485,12 @@ export async function claimTicket(channel, claimer) {
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId('ticket_close')
-          .setLabel('Close Ticket')
+          .setLabel('اغلاق التذكرة')
           .setStyle(ButtonStyle.Danger)
           .setEmoji('🔒'),
         new ButtonBuilder()
           .setCustomId('ticket_claim')
-          .setLabel('Claimed')
+          .setLabel('مستلمة')
           .setStyle(ButtonStyle.Secondary)
           .setEmoji('🙋')
           .setDisabled(true),
@@ -519,7 +516,7 @@ export async function claimTicket(channel, claimer) {
     const unclaimRow = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('ticket_unclaim')
-        .setLabel('Unclaim')
+        .setLabel('ترك الاستلام')
         .setStyle(ButtonStyle.Secondary)
         .setEmoji('🔓')
     );
@@ -579,13 +576,13 @@ export async function reopenTicket(channel, reopener) {
   try {
     const ticketData = await getTicketData(channel.guild.id, channel.id);
     if (!ticketData) {
-      return { success: false, error: 'هذي ليست قناة التذاكر' };
+      return { success: false, error: 'This is not a ticket channel' };
     }
     
     if (ticketData.status !== 'closed') {
       return { 
         success: false, 
-        error: 'هذي التذكرة غير مغلقة حاليا' 
+        error: 'This ticket is not currently closed' 
       };
     }
 
@@ -827,7 +824,7 @@ export async function deleteTicket(channel, deleter) {
     
     const deleteEmbed = createEmbed({
       title: 'Ticket Deleted',
-      description: `🗑️ سوف يتم حذف التذكرة خلال ${TICKET_DELETE_DELAY_SECONDS} ثوانٍ.`,
+      description: `🗑️ This ticket will be permanently deleted in ${TICKET_DELETE_DELAY_SECONDS} seconds.`,
       color: '#e74c3c',
       footer: { text: `Ticket ID: ${ticketData.id}` }
     });
@@ -945,13 +942,13 @@ export async function deleteTicket(channel, deleter) {
         // Delete the channel (regardless of transcript success)
         try {
           await channel.delete('Ticket deleted permanently');
-          logger.info('✅ التذكرة انحذفت', {
+          logger.info('✅ Channel deleted', {
             channelId: channel.id,
             channelName: channel.name,
             ticketNumber: ticketData.id
           });
         } catch (deleteError) {
-          logger.error('❌ خطأ في حذف هذي التذكرة:', {
+          logger.error('❌ Failed to delete ticket channel:', {
             channelId: channel.id,
             channelName: channel.name,
             ticketNumber: ticketData.id,
@@ -961,7 +958,7 @@ export async function deleteTicket(channel, deleter) {
           });
         }
       } catch (error) {
-        logger.error('❌ خطأ غير متوقع أثناء حذف التذكرة:', {
+        logger.error('❌ Unexpected error during ticket deletion:', {
           channelId: channel.id,
           channelName: channel?.name,
           ticketNumber: ticketData?.id,
@@ -1235,3 +1232,6 @@ export async function updateTicketPriority(channel, priority, updater) {
     };
   }
 }
+
+
+
