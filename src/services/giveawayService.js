@@ -136,11 +136,11 @@ export function validatePrize(prize) {
     }
 
     const trimmed = prize.trim();
-    if (trimmed.length === 0 || trimmed.length > 500) {
+    if (trimmed.length === 0 || trimmed.length > 256) {
         throw new TitanBotError(
             `Prize length out of range: ${trimmed.length}`,
             ErrorTypes.VALIDATION,
-            'Prize must be between 1 and 500 characters.',
+            'Prize must be between 1 and 256 characters.',
             { length: trimmed.length }
         );
     }
@@ -179,12 +179,12 @@ export function createGiveawayEmbed(giveaway, status, winners = []) {
         
         const embed = new EmbedBuilder()
             .setTitle(`${statusEmoji} ${giveaway.prize}`)
-            .setDescription('')
+            .setDescription('تفاعل مع الزر التالي للدخول!')
             .setColor(color)
             .addFields(
                 { name: '👤 المنشئ', value: `<@${giveaway.hostId}>`, inline: true },
                 { name: '🏆 عدد الفائزون', value: giveaway.winnerCount.toString(), inline: true },
-                { name: '👥 عدد الاشخاص', value: giveaway.participants?.length?.toString() || '0', inline: true }
+                { name: '👥 عدد الانضمام', value: giveaway.participants?.length?.toString() || '0', inline: true }
             );
 
         if (isEnded) {
@@ -498,12 +498,12 @@ export async function checkGiveaways(client) {
                     inline: true
                   },
                   {
-                    name: '🏆 الفائزون',
+                    name: '🏆 الفائزين',
                     value: winners.map(id => `<@${id}>`).join(', '),
                     inline: false
                   },
                   {
-                    name: '👥 الاشخاص',
+                    name: '👥 عدد الاشخاص',
                     value: participants.length.toString(),
                     inline: true
                   }
