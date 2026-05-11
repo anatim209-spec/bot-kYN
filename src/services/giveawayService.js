@@ -179,7 +179,7 @@ export function createGiveawayEmbed(giveaway, status, winners = []) {
         
         const embed = new EmbedBuilder()
             .setTitle(`${statusEmoji} ${giveaway.prize}`)
-            .setDescription('``اضغل بالأفسل للدخول!``')
+            .setDescription('```اضغل بالأفسل للدخول!```')
             .setColor(color)
             .addFields(
                 { name: '👤 المنشئ', value: `<@${giveaway.hostId}>`, inline: true },
