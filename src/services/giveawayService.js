@@ -179,22 +179,22 @@ export function createGiveawayEmbed(giveaway, status, winners = []) {
         
         const embed = new EmbedBuilder()
             .setTitle(`${statusEmoji} ${giveaway.prize}`)
-            .setDescription('')
+            .setDescription('تفاعل مع الزر التالي للدخول!')
             .setColor(color)
             .addFields(
-                { name: '👤 مقدم من', value: `<@${giveaway.hostId}>`, inline: true },
-                { name: '🏆 الفائزين', value: giveaway.winnerCount.toString(), inline: true },
-                { name: '👥 المشاركين', value: giveaway.participants?.length?.toString() || '0', inline: true }
+                { name: '👤 المنشئ', value: `<@${giveaway.hostId}>`, inline: true },
+                { name: '🏆 عدد الفائزون', value: giveaway.winnerCount.toString(), inline: true },
+                { name: '👥 العدد', value: giveaway.participants?.length?.toString() || '0', inline: true }
             );
 
         if (isEnded) {
             const winnerDisplay = winners.length > 0 
                 ? winners.map(id => `<@${id}>`).join(', ')
                 : 'No valid entries';
-            embed.addFields({ name: '🎯 الفائزين', value: winnerDisplay, inline: false });
+            embed.addFields({ name: '🎯 الفائزون', value: winnerDisplay, inline: false });
         } else {
             const endTime = giveaway.endsAt || giveaway.endTime;
-            embed.addFields({ name: '⏰ تنتهي', value: `<t:${Math.floor(endTime / 1000)}:R>`, inline: false });
+            embed.addFields({ name: '⏰ تنتغي بعد', value: `<t:${Math.floor(endTime / 1000)}:R>`, inline: false });
         }
 
         embed.setTimestamp();
@@ -224,12 +224,12 @@ export function createGiveawayButtons(ended = false) {
             row.addComponents(
                 new ButtonBuilder()
                     .setCustomId('giveaway_reroll')
-                    .setLabel('🎲 Reroll')
+                    .setLabel('🎲 اعادة السحب')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(false),
                 new ButtonBuilder()
                     .setCustomId('giveaway_view')
-                    .setLabel('👁️ View Winners')
+                    .setLabel('👁️ عرض الفائزين')
                     .setStyle(ButtonStyle.Primary)
                     .setDisabled(false)
             );
@@ -237,12 +237,12 @@ export function createGiveawayButtons(ended = false) {
             row.addComponents(
                 new ButtonBuilder()
                     .setCustomId('giveaway_join')
-                    .setLabel('🎉 انضمام')
+                    .setLabel('🎉 دخول المسابقة')
                     .setStyle(ButtonStyle.Primary)
                     .setDisabled(false),
                 new ButtonBuilder()
                     .setCustomId('giveaway_end')
-                    .setLabel('انهاء')
+                    .setLabel('🛑 انهاء المسابقة')
                     .setStyle(ButtonStyle.Danger)
                     .setDisabled(false)
             );
