@@ -242,7 +242,7 @@ export function createGiveawayButtons(ended = false) {
                     .setDisabled(false),
                 new ButtonBuilder()
                     .setCustomId('giveaway_end')
-                    .setLabel('')
+                    .setLabel('انهاء')
                     .setStyle(ButtonStyle.Danger)
                     .setDisabled(false)
             );
