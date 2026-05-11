@@ -179,22 +179,22 @@ export function createGiveawayEmbed(giveaway, status, winners = []) {
         
         const embed = new EmbedBuilder()
             .setTitle(`${statusEmoji} ${giveaway.prize}`)
-            .setDescription('React with the button below to enter!')
+            .setDescription('')
             .setColor(color)
             .addFields(
-                { name: '👤 Hosted by', value: `<@${giveaway.hostId}>`, inline: true },
-                { name: '🏆 Winners', value: giveaway.winnerCount.toString(), inline: true },
-                { name: '👥 Entries', value: giveaway.participants?.length?.toString() || '0', inline: true }
+                { name: '👤 مقدم من', value: `<@${giveaway.hostId}>`, inline: true },
+                { name: '🏆 الفائزين', value: giveaway.winnerCount.toString(), inline: true },
+                { name: '👥 المشاركين', value: giveaway.participants?.length?.toString() || '0', inline: true }
             );
 
         if (isEnded) {
             const winnerDisplay = winners.length > 0 
                 ? winners.map(id => `<@${id}>`).join(', ')
                 : 'No valid entries';
-            embed.addFields({ name: '🎯 Winners', value: winnerDisplay, inline: false });
+            embed.addFields({ name: '🎯 الفائزين', value: winnerDisplay, inline: false });
         } else {
             const endTime = giveaway.endsAt || giveaway.endTime;
-            embed.addFields({ name: '⏰ Ends', value: `<t:${Math.floor(endTime / 1000)}:R>`, inline: false });
+            embed.addFields({ name: '⏰ تنتهي', value: `<t:${Math.floor(endTime / 1000)}:R>`, inline: false });
         }
 
         embed.setTimestamp();
@@ -237,12 +237,12 @@ export function createGiveawayButtons(ended = false) {
             row.addComponents(
                 new ButtonBuilder()
                     .setCustomId('giveaway_join')
-                    .setLabel('🎉 Join')
+                    .setLabel('🎉 انضمام')
                     .setStyle(ButtonStyle.Primary)
                     .setDisabled(false),
                 new ButtonBuilder()
                     .setCustomId('giveaway_end')
-                    .setLabel('🛑 End')
+                    .setLabel('')
                     .setStyle(ButtonStyle.Danger)
                     .setDisabled(false)
             );
