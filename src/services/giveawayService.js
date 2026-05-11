@@ -136,11 +136,11 @@ export function validatePrize(prize) {
     }
 
     const trimmed = prize.trim();
-    if (trimmed.length === 0 || trimmed.length > 256) {
+    if (trimmed.length === 0 || trimmed.length > 500) {
         throw new TitanBotError(
             `Prize length out of range: ${trimmed.length}`,
             ErrorTypes.VALIDATION,
-            'Prize must be between 1 and 256 characters.',
+            'Prize must be between 1 and 500 characters.',
             { length: trimmed.length }
         );
     }
@@ -173,18 +173,18 @@ export function validateWinnerCount(winnerCount) {
 
 export function createGiveawayEmbed(giveaway, status, winners = []) {
     try {
-        const statusEmoji = status === 'ended' ? '🎉' : status === 'reroll' ? '🔄' : '🎉';
+        const statusEmoji = status === 'ended' ? '' : status === 'reroll' ? '🔄' : '🎉';
         const isEnded = status === 'ended' || status === 'reroll';
         const color = isEnded ? getColor('giveaway.ended') : getColor('giveaway.active');
         
         const embed = new EmbedBuilder()
             .setTitle(`${statusEmoji} ${giveaway.prize}`)
-            .setDescription('تفاعل مع الزر التالي للدخول!')
+            .setDescription('')
             .setColor(color)
             .addFields(
                 { name: '👤 المنشئ', value: `<@${giveaway.hostId}>`, inline: true },
                 { name: '🏆 عدد الفائزون', value: giveaway.winnerCount.toString(), inline: true },
-                { name: '👥 العدد', value: giveaway.participants?.length?.toString() || '0', inline: true }
+                { name: '👥 عدد الاشخاص', value: giveaway.participants?.length?.toString() || '0', inline: true }
             );
 
         if (isEnded) {
@@ -493,17 +493,17 @@ export async function checkGiveaways(client) {
                 channelId: channel.id,
                 fields: [
                   {
-                    name: '🎁 Prize',
+                    name: '🎁 الجائزة',
                     value: giveaway.prize || 'Mystery Prize!',
                     inline: true
                   },
                   {
-                    name: '🏆 Winners',
+                    name: '🏆 الفائزون',
                     value: winners.map(id => `<@${id}>`).join(', '),
                     inline: false
                   },
                   {
-                    name: '👥 Entries',
+                    name: '👥 الاشخاص',
                     value: participants.length.toString(),
                     inline: true
                   }
