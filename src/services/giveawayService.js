@@ -136,11 +136,11 @@ export function validatePrize(prize) {
     }
 
     const trimmed = prize.trim();
-    if (trimmed.length === 0 || trimmed.length > 10000000) {
+    if (trimmed.length === 0 || trimmed.length > 256) {
         throw new TitanBotError(
             `Prize length out of range: ${trimmed.length}`,
             ErrorTypes.VALIDATION,
-            'Prize must be between 1 and 10000000 characters.',
+            'Prize must be between 1 and 256 characters.',
             { length: trimmed.length }
         );
     }
@@ -526,6 +526,3 @@ export async function checkGiveaways(client) {
     logger.error('Error checking giveaways:', error);
   }
 }
-
-
-
