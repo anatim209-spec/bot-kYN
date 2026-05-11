@@ -173,7 +173,7 @@ export function validateWinnerCount(winnerCount) {
 
 export function createGiveawayEmbed(giveaway, status, winners = []) {
     try {
-        const statusEmoji = status === 'ended' ? '' : status === 'reroll' ? '🔄' : '🎉';
+        const statusEmoji = status === 'ended' ? '' : status === 'reroll' ? '🔄' : '';
         const isEnded = status === 'ended' || status === 'reroll';
         const color = isEnded ? getColor('giveaway.ended') : getColor('giveaway.active');
         
