@@ -11,7 +11,7 @@ export default {
         .setDescription("Warn a user")
         .addUserOption((o) =>
             o
-                .setName("target")
+                .setName("المستهدف")
                 .setRequired(true)
                 .setDescription("اسم المستهدف"),
         )
