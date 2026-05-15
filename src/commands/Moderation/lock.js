@@ -1,8 +1,8 @@
 import { SlashCommandBuilder, PermissionFlagsBits, PermissionsBitField, ChannelType } from 'discord.js';
 import { createEmbed, errorEmbed, successEmbed, infoEmbed, warningEmbed } from '../../utils/embeds.js';
-import { logEvent } from '../../utils/moderation.js';
-import { logger } from '../../utils/logger.js';
-import { getColor } from '../../config/bot.js';
+import { logEvent } from '..*../utils/moderation.js';
+import { logger } from '..*../utils/logger.js';
+import { getColor } from '..*../config/bot.js';
 
 import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
