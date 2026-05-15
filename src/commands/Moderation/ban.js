@@ -45,7 +45,7 @@ export default {
                 embeds: [
                     successEmbed(
                         `🚫 **حظر** ${user.tag}`,
-                        `**Reason:** ${reason}\n**Case ID:** #${result.caseId}`,
+                        `**السبب:** ${reason}\n**Case ID:** #${result.caseId}`,
                     ),
                 ],
             });
