@@ -7,7 +7,7 @@ import { getColor } from '../../config/bot.js';
 import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
-    .setName("lock")
+    .setName("ق")
     .setDescription(
       "Locks the current channel (prevents @everyone from sending messages).",
     )
