@@ -32,9 +32,9 @@ export default {
         );
       }
 
-      const targetUser = interaction.options.getUser("target");
-      const member = interaction.options.getMember("target");
-      const reason = interaction.options.getString("reason") || "No reason provided";
+      const targetUser = interaction.options.getUser("المستهدف");
+      const member = interaction.options.getMember("المستهدف");
+      const reason = interaction.options.getString("السبب") || "No reason provided";
 
       
       if (targetUser.id === interaction.user.id) {
