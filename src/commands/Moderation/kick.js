@@ -8,15 +8,15 @@ import { TitanBotError, ErrorTypes } from '../../utils/errorHandler.js';
 export default {
     data: new SlashCommandBuilder()
     .setName("kick")
-    .setDescription("Kick a user from the server")
+    .setDescription("طرد شخص من السيرفر")
     .addUserOption((option) =>
       option
-        .setName("target")
-        .setDescription("The user to kick")
+        .setName("المستهدف")
+        .setDescription("اسم الشخص المستهدف")
         .setRequired(true),
     )
     .addStringOption((option) =>
-      option.setName("reason").setDescription("Reason for the kick"),
+      option.setName("السبب").setDescription("سبب الطرد"),
     )
 .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
   category: "moderation",
@@ -105,8 +105,8 @@ export default {
       await InteractionHelper.universalReply(interaction, {
         embeds: [
           successEmbed(
-            `👢 **Kicked** ${targetUser.tag}`,
-            `**Reason:** ${reason}\n**Case ID:** #${caseId}`,
+            `⚠ **انطرد** ${targetUser.tag}`,
+            `**بسبب:** ${reason}\n**Case ID:** #${caseId}`,
           ),
         ],
       });
