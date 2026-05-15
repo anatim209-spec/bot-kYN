@@ -1,13 +1,13 @@
 import { SlashCommandBuilder, PermissionFlagsBits, PermissionsBitField, ChannelType } from 'discord.js';
 import { createEmbed, errorEmbed, successEmbed, infoEmbed, warningEmbed } from '../../utils/embeds.js';
-import { logEvent } from '..*../utils/moderation.js';
-import { logger } from '..*../utils/logger.js';
-import { getColor } from '..*../config/bot.js';
+import { logEvent } from '../../utils/moderation.js';
+import { logger } from '../../utils/logger.js';
+import { getColor } from '../../config/bot.js';
 
-import { InteractionHelper } from '..*../utils/interactionHelper.js';
+import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
-    .setName("ق")
+    .setName("lock")
     .setDescription(
       "Locks the current channel (prevents @everyone from sending messages).",
     )
@@ -106,6 +106,3 @@ export default {
     }
   }
 };
-
-
-
