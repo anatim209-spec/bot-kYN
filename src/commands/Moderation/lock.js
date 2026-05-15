@@ -4,7 +4,7 @@ import { logEvent } from '..*../utils/moderation.js';
 import { logger } from '..*../utils/logger.js';
 import { getColor } from '..*../config/bot.js';
 
-import { InteractionHelper } from '../../utils/interactionHelper.js';
+import { InteractionHelper } from '..*../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
     .setName("ق")
