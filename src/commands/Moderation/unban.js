@@ -8,16 +8,16 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
         .setName("unban")
-        .setDescription("Unban a user from the server")
+        .setDescription("الغاء حظر شخص بالسيرفر")
         .addUserOption(option =>
             option
-                .setName("target")
-                .setDescription("The user to unban (can be ID or mention)")
+                .setName("المستهدف")
+                .setDescription("اكتب (id) الشخص")
                 .setRequired(true)
         )
         .addStringOption(option =>
-            option.setName("reason")
-                .setDescription("Reason for the unban")
+            option.setName("السبب")
+                .setDescription("اكتب سبب فك الحظر")
                 .setRequired(false)
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
@@ -35,8 +35,8 @@ export default {
         }
 
         try {
-                const targetUser = interaction.options.getUser("target");
-                const reason = interaction.options.getString("reason") || "No reason provided";
+                const targetUser = interaction.options.getUser("المستهدف");
+                const reason = interaction.options.getString("السبب") || "No reason provided";
 
                 
                 const result = await ModerationService.unbanUser({
