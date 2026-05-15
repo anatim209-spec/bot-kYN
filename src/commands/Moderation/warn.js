@@ -86,8 +86,8 @@ export default {
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [
                         successEmbed(
-                            `⚠️ **Warned** ${target.tag}`,
-                            `**Reason:** ${reason}\n**Total Warns:** ${totalWarns}`,
+                            `⚠️ **تحذير** ${target.tag}`,
+                            `**بسبب:** ${reason}\n**Total Warns:** ${totalWarns}`,
                         ),
                     ],
                 });
