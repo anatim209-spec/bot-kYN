@@ -17,7 +17,7 @@ export default {
         )
         .addStringOption((o) =>
             o
-                .setName("reason")
+                .setName("السبب")
                 .setRequired(true)
                 .setDescription("اذكر السبب"),
         )
