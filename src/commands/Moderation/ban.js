@@ -16,7 +16,7 @@ export default {
                 .setRequired(true),
         )
         .addStringOption((option) =>
-            option.setName("reason").setDescription("سبب الحظر"),
+            option.setName("السبب").setDescription("سبب الحظر"),
         )
 .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     category: "moderation",
