@@ -8,18 +8,18 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
         .setName("warn")
-        .setDescription("Warn a user")
+        .setDescription("تحذير مستخدم")
         .addUserOption((o) =>
             o
-                .setName("target")
+                .setName("الطلوب")
                 .setRequired(true)
-                .setDescription("User to warn"),
+                .setDescription("اسم المستخدم"),
         )
         .addStringOption((o) =>
             o
-                .setName("reason")
+                .setName("السبب")
                 .setRequired(true)
-                .setDescription("Reason for the warning"),
+                .setDescription("سبب للتحذير"),
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -27,7 +27,7 @@ export default {
     async execute(interaction, config, client) {
         const deferSuccess = await InteractionHelper.safeDefer(interaction);
         if (!deferSuccess) {
-            logger.warn(`Warn interaction defer failed`, {
+            logger.warn(`حدث خطأ بالتحذير`, {
                 userId: interaction.user.id,
                 guildId: interaction.guildId,
                 commandName: 'warn'
@@ -37,7 +37,7 @@ export default {
 
         try {
                 if (!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers)) {
-                    throw new Error("You need the `Moderate Members` permission to issue warnings.");
+                    throw new Error("ليس لديك صلاحية تحذير هذا الشخص.");
                 }
 
                 const target = interaction.options.getUser("target");
@@ -86,8 +86,8 @@ export default {
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [
                         successEmbed(
-                            `⚠️ **Warned** ${target.tag}`,
-                            `**Reason:** ${reason}\n**Total Warns:** ${totalWarns}`,
+                            `⚠️ **تحذير** ${target.tag}`,
+                            `**بسبب:** ${reason}\n**Total Warns:** ${totalWarns}`,
                         ),
                     ],
                 });
