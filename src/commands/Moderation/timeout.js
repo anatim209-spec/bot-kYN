@@ -18,23 +18,23 @@ const durationChoices = [
 export default {
     data: new SlashCommandBuilder()
         .setName("timeout")
-        .setDescription("Timeout a user for a specific duration.")
+        .setDescription("تايم اوت للشخص.")
         .addUserOption((option) =>
             option
-                .setName("target")
-                .setDescription("User to timeout")
+                .setName("المستهدف")
+                .setDescription("اسم المستهدف")
                 .setRequired(true),
         )
         .addIntegerOption(
             (option) =>
                 option
-                    .setName("duration")
-                    .setDescription("Duration of the timeout")
+                    .setName("المدة")
+                    .setDescription("اختر مدة التايم اوت")
                     .setRequired(true)
 .addChoices(...durationChoices),
         )
         .addStringOption((option) =>
-            option.setName("reason").setDescription("Reason for the timeout"),
+            option.setName("بسبب").setDescription("Reason for the timeout"),
         )
 .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -59,8 +59,8 @@ export default {
                 );
             }
 
-            const targetUser = interaction.options.getUser("target");
-            const member = interaction.options.getMember("target");
+            const targetUser = interaction.options.getUser("المستهدف");
+            const member = interaction.options.getMember("المستهدف");
             const durationMinutes = interaction.options.getInteger("duration");
             const reason = interaction.options.getString("reason") || "No reason provided";
 
@@ -122,8 +122,8 @@ export default {
             await InteractionHelper.safeEditReply(interaction, {
                 embeds: [
                     successEmbed(
-                        `⏳ **Timed out** ${targetUser.tag} for ${durationDisplay}.`,
-                        `**Reason:** ${reason}\n**Case ID:** #${caseId}`,
+                        `⏳ **تايم اوت** ${targetUser.tag} for ${durationDisplay}.`,
+                        `**بسبب:** ${reason}\n**Case ID:** #${caseId}`,
                     ),
                 ],
             });
