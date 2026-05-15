@@ -40,8 +40,8 @@ export default {
                     throw new Error("You need the `Moderate Members` permission to issue warnings.");
                 }
 
-                const target = interaction.options.getUser("target");
-                const member = interaction.options.getMember("target");
+                const target = interaction.options.getUser("المستهدف");
+                const member = interaction.options.getMember("المستهدف");
                 const reason = interaction.options.getString("reason");
                 const moderator = interaction.user;
                 const guildId = interaction.guildId;
