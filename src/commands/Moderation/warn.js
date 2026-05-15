@@ -11,13 +11,13 @@ export default {
         .setDescription("تحذير اعضاء")
         .addUserOption((o) =>
             o
-                .setName("target")
+                .setName("تحذير")
                 .setRequired(true)
                 .setDescription("الشخص المستهدف"),
         )
         .addStringOption((o) =>
             o
-                .setName("reason")
+                .setName("السبب")
                 .setRequired(true)
                 .setDescription("سبب التحذير"),
         )
