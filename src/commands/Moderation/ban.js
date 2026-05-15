@@ -24,13 +24,13 @@ export default {
     async execute(interaction, config, client) {
         try {
             const user = interaction.options.getUser("target");
-            const reason = interaction.options.getString("reason") || "No reason provided";
+            const reason = interaction.options.getString("السبب") || "No reason provided";
 
             if (user.id === interaction.user.id) {
-                throw new Error("You cannot ban yourself.");
+                throw new Error("ما تقدر تحظر نفسك.");
             }
             if (user.id === client.user.id) {
-                throw new Error("You cannot ban the bot.");
+                throw new Error("ما تقدر تحظر بوت.");
             }
 
             
@@ -44,7 +44,7 @@ export default {
             await InteractionHelper.universalReply(interaction, {
                 embeds: [
                     successEmbed(
-                        `🚫 **Banned** ${user.tag}`,
+                        `🚫 **حظر** ${user.tag}`,
                         `**Reason:** ${reason}\n**Case ID:** #${result.caseId}`,
                     ),
                 ],
