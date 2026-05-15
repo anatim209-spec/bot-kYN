@@ -8,11 +8,11 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
         .setName("untimeout")
-        .setDescription("Remove timeout from a user")
+        .setDescription("الغاء التايم اوت")
         .addUserOption((option) =>
             option
-                .setName("target")
-                .setDescription("User to untimeout")
+                .setName("المستهدف")
+                .setDescription("اسم المستهدف")
                 .setRequired(true),
         )
 .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
@@ -30,8 +30,8 @@ export default {
         }
 
         try {
-                const targetUser = interaction.options.getUser("target");
-                const member = interaction.options.getMember("target");
+                const targetUser = interaction.options.getUser("المستهدف");
+                const member = interaction.options.getMember("المستهدف");
 
                 
                 const result = await ModerationService.removeTimeoutUser({
