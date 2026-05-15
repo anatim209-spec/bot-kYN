@@ -8,18 +8,18 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
         .setName("warn")
-        .setDescription("تحذير اعضاء")
+        .setDescription("Warn a user")
         .addUserOption((o) =>
             o
-                .setName("تحذير")
+                .setName("target")
                 .setRequired(true)
-                .setDescription("الشخص المستهدف"),
+                .setDescription("User to warn"),
         )
         .addStringOption((o) =>
             o
-                .setName("السبب")
+                .setName("reason")
                 .setRequired(true)
-                .setDescription("سبب التحذير"),
+                .setDescription("Reason for the warning"),
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -86,8 +86,8 @@ export default {
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [
                         successEmbed(
-                            `⚠️ **تحذير** ${target.tag}`,
-                            `**بسبب:** ${reason}\n**Total Warns:** ${totalWarns}`,
+                            `⚠️ **Warned** ${target.tag}`,
+                            `**Reason:** ${reason}\n**Total Warns:** ${totalWarns}`,
                         ),
                     ],
                 });
