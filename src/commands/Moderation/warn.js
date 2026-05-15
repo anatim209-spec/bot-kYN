@@ -11,15 +11,15 @@ export default {
         .setDescription("Warn a user")
         .addUserOption((o) =>
             o
-                .setName("target")
+                .setName("المستهدف")
                 .setRequired(true)
-                .setDescription("User to warn"),
+                .setDescription("اسم المستهدف"),
         )
         .addStringOption((o) =>
             o
-                .setName("reason")
+                .setName("السبب")
                 .setRequired(true)
-                .setDescription("Reason for the warning"),
+                .setDescription("سبب التحذير"),
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -86,8 +86,8 @@ export default {
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [
                         successEmbed(
-                            `⚠️ **Warned** ${target.tag}`,
-                            `**Reason:** ${reason}\n**Total Warns:** ${totalWarns}`,
+                            `⚠️ **تم تحذير** ${target.tag}`,
+                            `**بسبب:** ${reason}\n**Total Warns:** ${totalWarns}`,
                         ),
                     ],
                 });
