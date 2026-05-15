@@ -7,19 +7,19 @@ import { handleInteractionError } from '../../utils/errorHandler.js';
 import { InteractionHelper } from '../../utils/interactionHelper.js';
 export default {
     data: new SlashCommandBuilder()
-        .setName("warn")
-        .setDescription("تحذير مستخدم")
+        .setName("تحذير")
+        .setDescription("تحذير اعضاء")
         .addUserOption((o) =>
             o
-                .setName("الطلوب")
+                .setName("الشخص")
                 .setRequired(true)
-                .setDescription("اسم المستخدم"),
+                .setDescription("اسم المستهدف"),
         )
         .addStringOption((o) =>
             o
                 .setName("السبب")
                 .setRequired(true)
-                .setDescription("سبب للتحذير"),
+                .setDescription("سبب التحذير"),
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -27,7 +27,7 @@ export default {
     async execute(interaction, config, client) {
         const deferSuccess = await InteractionHelper.safeDefer(interaction);
         if (!deferSuccess) {
-            logger.warn(`حدث خطأ بالتحذير`, {
+            logger.warn(`Warn interaction defer failed`, {
                 userId: interaction.user.id,
                 guildId: interaction.guildId,
                 commandName: 'warn'
@@ -37,7 +37,7 @@ export default {
 
         try {
                 if (!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers)) {
-                    throw new Error("ليس لديك صلاحية تحذير هذا الشخص.");
+                    throw new Error("You need the `Moderate Members` permission to issue warnings.");
                 }
 
                 const target = interaction.options.getUser("target");
@@ -97,6 +97,3 @@ export default {
         }
     }
 };
-
-
-
