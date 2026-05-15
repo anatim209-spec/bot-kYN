@@ -34,7 +34,7 @@ export default {
 .addChoices(...durationChoices),
         )
         .addStringOption((option) =>
-            option.setName("بسبب").setDescription("Reason for the timeout"),
+            option.setName("السبب").setDescription("سبب اعطاء تايم اوت"),
         )
 .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -61,8 +61,8 @@ export default {
 
             const targetUser = interaction.options.getUser("المستهدف");
             const member = interaction.options.getMember("المستهدف");
-            const durationMinutes = interaction.options.getInteger("duration");
-            const reason = interaction.options.getString("reason") || "No reason provided";
+            const durationMinutes = interaction.options.getInteger("المدة");
+            const reason = interaction.options.getString("السبب") || "No reason provided";
 
             if (targetUser.id === interaction.user.id) {
                 throw new TitanBotError(
