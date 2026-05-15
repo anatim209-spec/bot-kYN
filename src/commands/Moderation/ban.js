@@ -12,7 +12,7 @@ export default {
         .addUserOption((option) =>
             option
                 .setName("target")
-                .setDescription("تم حظر المستخدم")
+                .setDescription("الشخص المستهدف")
                 .setRequired(true),
         )
         .addStringOption((option) =>
