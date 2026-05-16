@@ -96,7 +96,7 @@ export default {
                 }
                 
                 const embed = successEmbed(
-                    `📊 ${isAnonymous ? 'Anonymous ' : ''}Poll`,
+                    `📢 ${isAnonymous ? 'Anonymous ' : ''}تصويت`,
                     description
                 );
                 
