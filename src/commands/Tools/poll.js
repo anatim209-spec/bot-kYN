@@ -92,7 +92,7 @@ export default {
                 if (isAnonymous) {
                     description += '\n*This is an anonymous poll. Votes are not tracked to users.*';
                 } else {
-                    description += '\n*React with the emoji to vote!*';
+                    description += '\n*تفاعل باستخدام الرموز للتصويت!*';
                 }
                 
                 const embed = successEmbed(
