@@ -11,15 +11,15 @@ export default {
         .setDescription("Warn a user")
         .addUserOption((o) =>
             o
-                .setName("المستهدف")
+                .setName("target")
                 .setRequired(true)
-                .setDescription("اسم المستهدف"),
+                .setDescription("User to warn"),
         )
         .addStringOption((o) =>
             o
-                .setName("السبب")
+                .setName("reason")
                 .setRequired(true)
-                .setDescription("اذكر السبب"),
+                .setDescription("Reason for the warning"),
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
     category: "moderation",
@@ -40,8 +40,8 @@ export default {
                     throw new Error("You need the `Moderate Members` permission to issue warnings.");
                 }
 
-                const target = interaction.options.getUser("المستهدف");
-                const member = interaction.options.getMember("المستهدف");
+                const target = interaction.options.getUser("target");
+                const member = interaction.options.getMember("target");
                 const reason = interaction.options.getString("reason");
                 const moderator = interaction.user;
                 const guildId = interaction.guildId;
@@ -86,8 +86,8 @@ export default {
                 await InteractionHelper.safeEditReply(interaction, {
                     embeds: [
                         successEmbed(
-                            `⚠️ **تحذير** ${target.tag}`,
-                            `**بسبب:** ${reason}\n**Total Warns:** ${totalWarns}`,
+                            `⚠️ **Warned** ${target.tag}`,
+                            `**Reason:** ${reason}\n**Total Warns:** ${totalWarns}`,
                         ),
                     ],
                 });
