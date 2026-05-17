@@ -92,11 +92,11 @@ export default {
                 if (isAnonymous) {
                     description += '\n*This is an anonymous poll. Votes are not tracked to users.*';
                 } else {
-                    description += '\n*تفاعل باستخدام الرموز للتصويت!*';
+                    description += '\n*React with the emoji to vote!*';
                 }
                 
                 const embed = successEmbed(
-                    `📢 ${isAnonymous ? 'Anonymous ' : ''}تصويت`,
+                    `📊 ${isAnonymous ? 'Anonymous ' : ''}Poll`,
                     description
                 );
                 
@@ -118,7 +118,3 @@ export default {
         }
     },
 };
-
-
-
-
