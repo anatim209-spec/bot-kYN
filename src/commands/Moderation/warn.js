@@ -87,7 +87,7 @@ export default {
                     embeds: [
                         successEmbed(
                             `⚠️ **تم تحذير** ${target.tag}`,
-                            `**بسبب:** ${reason}\n**Total Warns:** ${totalWarns}`,
+                            `**بسبب:** ${reason}\n**عدد التحذيرات:** ${totalWarns}`,
                         ),
                     ],
                 });
