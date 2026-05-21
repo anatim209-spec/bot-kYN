@@ -363,7 +363,7 @@ export async function endGiveaway(client, giveaway, guildId, endedBy) {
             throw new TitanBotError(
                 `Giveaway ${giveaway.messageId} is already ended`,
                 ErrorTypes.VALIDATION,
-                'This giveaway has already ended.',
+                'هذي الفعالية انتهت بالفعل.',
                 { giveawayId: giveaway.messageId, status: 'already_ended' }
             );
         }
