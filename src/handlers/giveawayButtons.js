@@ -188,7 +188,7 @@ export const giveawayEndHandler = {
             const updatedRow = createGiveawayButtons(true);
 
             await interaction.message.edit({
-                content: '🎉 **GIVEAWAY ENDED** 🎉',
+                content: '🎉 **انتهت المسابقة** 🎉',
                 embeds: [updatedEmbed],
                 components: [updatedRow]
             });
