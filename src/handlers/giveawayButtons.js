@@ -105,8 +105,8 @@ export const giveawayJoinHandler = {
                 await interaction.reply({
                     embeds: [
                         successEmbed(
-                            'Success! You have entered the giveaway! 🎉',
-                            `Good luck! There are now ${participants.length} entry/entries.`
+                            'لقد دخلت الفعالية! 🎉',
+                            `انت الشخص رقم ${participants.length} حظًا سعيدًا !!.`
                         )
                     ],
                     flags: MessageFlags.Ephemeral
