@@ -77,8 +77,8 @@ export const giveawayJoinHandler = {
                     return interaction.reply({
                         embeds: [
                             errorEmbed(
-                                'Already Entered',
-                                'You have already entered this giveaway! 🎉'
+                                'انت موجود',
+                                'انت دخلت هذه المسابقة بالفعل! 🎉'
                             )
                         ],
                         flags: MessageFlags.Ephemeral
@@ -231,8 +231,8 @@ export const giveawayEndHandler = {
             await interaction.reply({
                 embeds: [
                     successEmbed(
-                        `Giveaway Ended ✅`,
-                        `The giveaway has been ended and ${winners.length} winner(s) have been selected!`
+                        `انتهت المسابقة ✅`,
+                        `انتهت المسابقة وتم اختيار ${winners.length} فائز واحد!`
                     )
                 ],
                 flags: MessageFlags.Ephemeral
@@ -322,7 +322,7 @@ export const giveawayRerollHandler = {
             const updatedRow = createGiveawayButtons(true);
 
             await interaction.message.edit({
-                content: '🔄 **GIVEAWAY REROLLED** 🔄',
+                content: '🔄 **اعادة المسابقة** 🔄',
                 embeds: [updatedEmbed],
                 components: [updatedRow]
             });
@@ -363,8 +363,8 @@ export const giveawayRerollHandler = {
             await interaction.reply({
                 embeds: [
                     successEmbed(
-                        'Giveaway Rerolled ✅',
-                        `New winner(s) have been selected!`
+                        'تم اعادة المسابقة ✅',
+                        `تم اختيار فائز جديد!`
                     )
                 ],
                 flags: MessageFlags.Ephemeral
@@ -426,7 +426,7 @@ export const giveawayViewHandler = {
             await interaction.reply({
                 embeds: [
                     successEmbed(
-                        `Winners for ${giveaway.prize || 'this giveaway'} 🎉`,
+                        `الفائزون في ${giveaway.prize || 'this giveaway'} 🎉`,
                         winnerMentions
                     )
                 ],
