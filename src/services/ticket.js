@@ -308,7 +308,7 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
           // Post-close feedback survey — separate DM message so it can be updated on submit
           try {
             const feedbackEmbed = createEmbed({
-              title: '⭐ How was your support experience?',${claimer}
+              title: '⭐ How was your support experience? ${claimer}',
               description: `We'd love to know how we did with **${channel.name}**.\nSelect a rating below — it only takes a second!`,
               color: '#F1C40F',
               footer: { text: 'Your feedback helps us improve.' },
