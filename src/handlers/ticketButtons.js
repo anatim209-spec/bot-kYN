@@ -234,7 +234,7 @@ const closeTicketHandler = {
         .setCustomId('reason')
         .setLabel('سبب الاغلاق (اختياري)')
         .setStyle(TextInputStyle.Paragraph)
-        .setPlaceholder('اضف سبب اختياري لاغلاق التكرة ...')
+        .setPlaceholder('اضف سبب اختياري لاغلاق التذكرة ...')
         .setRequired(false)
         .setMaxLength(1000);
 
