@@ -308,19 +308,19 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
           // Post-close feedback survey — separate DM message so it can be updated on submit
           try {
             const feedbackEmbed = createEmbed({
-              title: '⭐ How was your support experience? ${claimer}',
-              description: `We'd love to know how we did with **${channel.name}**.\nSelect a rating below — it only takes a second!`,
-              color: '#F1C40F',
-              footer: { text: 'Your feedback helps us improve.' },
-            });
-            
-            const base = `ticket_feedback:${channel.guild.id}:${channel.id}`;
-            const starsRow = new ActionRowBuilder().addComponents(
-              new ButtonBuilder().setCustomId(`${base}:1`).setLabel('⭐ 1').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:2`).setLabel('⭐⭐ 2').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:3`).setLabel('⭐⭐⭐ 3').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:4`).setLabel('⭐⭐⭐⭐ 4').setStyle(ButtonStyle.Secondary),
-              new ButtonBuilder().setCustomId(`${base}:5`).setLabel('⭐⭐⭐⭐⭐ 5').setStyle(ButtonStyle.Secondary),
+            title: '⭐ كيف كانت تجربتك مع الدعم؟',
+description: `نود معرفة رأيك حول الخدمة المقدمة في **${channel.name}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
+color: '#F1C40F',
+footer: { text: 'ملاحظاتك تساعدنا على تحسين خدمتنا.' },
+});
+
+const base = `ticket_feedback:${channel.guild.id}:${channel.id}`;
+const starsRow = new ActionRowBuilder().addComponents(
+  new ButtonBuilder().setCustomId(`${base}:1`).setLabel('⭐ 1').setStyle(ButtonStyle.Secondary),
+  new ButtonBuilder().setCustomId(`${base}:2`).setLabel('⭐⭐ 2').setStyle(ButtonStyle.Secondary),
+  new ButtonBuilder().setCustomId(`${base}:3`).setLabel('⭐⭐⭐ 3').setStyle(ButtonStyle.Secondary),
+  new ButtonBuilder().setCustomId(`${base}:4`).setLabel('⭐⭐⭐⭐ 4').setStyle(ButtonStyle.Secondary),
+  new ButtonBuilder().setCustomId(`${base}:5`).setLabel('⭐⭐⭐⭐⭐ 5').setStyle(ButtonStyle.Secondary),
             );
             const declineRow = new ActionRowBuilder().addComponents(
               new ButtonBuilder()
