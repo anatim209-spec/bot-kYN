@@ -306,10 +306,8 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
           await ticketCreator.send({ embeds: [dmEmbed] });
 
           // Post-close feedback survey — separate DM message so it can be updated on submit
-          try {
-            const feedbackEmbed = createEmbed({
-            title: '⭐ كيف كانت تجربتك مع الدعم؟',
-description: `نود معرفة رأيك حول الخدمة المقدمة في **${ticket_claim}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
+     title: '⭐ كيف كانت تجربتك مع الدعم؟',
+description: `نود معرفة رأيك حول الخدمة المقدمة من **${claimer.user.username}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
 color: '#F1C40F',
 footer: { text: 'ملاحظاتك تساعدنا على تحسين خدمتنا.' },
 });
