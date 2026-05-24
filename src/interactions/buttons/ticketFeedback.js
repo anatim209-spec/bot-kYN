@@ -5,11 +5,11 @@ import { getColor } from '../../config/bot.js';
 import { getGuildConfig } from '../../services/guildConfig.js';
 
 const STAR_LABELS = {
-    '1': '⭐ 1 — Poor',
-    '2': '⭐⭐ 2 — Below Average',
-    '3': '⭐⭐⭐ 3 — Average',
-    '4': '⭐⭐⭐⭐ 4 — Good',
-    '5': '⭐⭐⭐⭐⭐ 5 — Excellent',
+    '1': '⭐ 1 — ',
+    '2': '⭐⭐ 2 — ',
+    '3': '⭐⭐⭐ 3 — ',
+    '4': '⭐⭐⭐⭐ 4 — ',
+    '5': '⭐⭐⭐⭐⭐ 5 — ',
 };
 
 const feedbackHandler = {
@@ -56,7 +56,7 @@ const feedbackHandler = {
             await interaction.reply({
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle('❌ Not Allowed')
+                        .setTitle('❌ لا')
                         .setDescription('Only the ticket creator can submit feedback for this ticket.')
                         .setColor(getColor('error')),
                 ],
@@ -121,8 +121,8 @@ const feedbackHandler = {
         await interaction.update({
             embeds: [
                 new EmbedBuilder()
-                    .setTitle('✅ Thanks for your feedback!')
-                    .setDescription(`You rated your support experience **${ratingLabel}**.\n\nYour feedback has been recorded and helps us improve!`)
+                    .setTitle('✅ شكرا لارسال تقييمك!')
+                    .setDescription(`تم ارسال تقييمك للدعم الفني **${ratingLabel}**.\n\n`)
                     .setColor(getColor('success'))
                     .setFooter({ text: 'Thank you for using our support system.' })
                     .setTimestamp(),
@@ -146,7 +146,7 @@ const declineHandler = {
         await interaction.update({
             embeds: [
                 new EmbedBuilder()
-                    .setTitle('👋 No problem!')
+                    .setTitle('👋لا توجد مشكلة!')
                     .setDescription('You can always reach out again if you need further support.')
                     .setColor(getColor('default')),
             ],
