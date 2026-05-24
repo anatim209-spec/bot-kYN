@@ -325,7 +325,6 @@ const starsRow = new ActionRowBuilder().addComponents(
             const declineRow = new ActionRowBuilder().addComponents(
               new ButtonBuilder()
                 .setCustomId(`ticket_feedback_decline:${channel.guild.id}:${channel.id}`)
-                .setLabel('❌ No thanks')
                 .setStyle(ButtonStyle.Secondary),
             );
 
