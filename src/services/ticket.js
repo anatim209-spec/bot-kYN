@@ -322,12 +322,7 @@ const starsRow = new ActionRowBuilder().addComponents(
   new ButtonBuilder().setCustomId(`${base}:4`).setLabel('⭐⭐⭐⭐ 4').setStyle(ButtonStyle.Secondary),
   new ButtonBuilder().setCustomId(`${base}:5`).setLabel('⭐⭐⭐⭐⭐ 5').setStyle(ButtonStyle.Secondary),
             );
-            const declineRow = new ActionRowBuilder().addComponents(
-              new ButtonBuilder()
-                .setCustomId(`ticket_feedback_decline:${channel.guild.id}:${channel.id}`)
-                .setLabel('❌ لا اريد')
-                .setStyle(ButtonStyle.Secondary),
-            );
+           
 
             await ticketCreator.send({
               embeds: [feedbackEmbed],
