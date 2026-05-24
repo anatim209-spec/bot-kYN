@@ -309,7 +309,7 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
           try {
             const feedbackEmbed = createEmbed({
             title: '⭐ كيف كانت تجربتك مع الدعم؟',
-description: `نود معرفة رأيك حول الخدمة المقدمة في **${claimer?.id}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
+description: `نود معرفة رأيك حول الخدمة المقدمة في **${channel.name}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
 color: '#F1C40F',
 footer: { text: 'ملاحظاتك تساعدنا على تحسين خدمتنا.' },
 });
@@ -325,7 +325,7 @@ const starsRow = new ActionRowBuilder().addComponents(
             const declineRow = new ActionRowBuilder().addComponents(
               new ButtonBuilder()
                 .setCustomId(`ticket_feedback_decline:${channel.guild.id}:${channel.id}`)
-                .setLabel('❌')
+                .setLabel('❌ No thanks')
                 .setStyle(ButtonStyle.Secondary),
             );
 
