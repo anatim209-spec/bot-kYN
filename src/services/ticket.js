@@ -309,7 +309,7 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
           try {
             const feedbackEmbed = createEmbed({
             title: '⭐ كيف كانت تجربتك مع الدعم؟',
-description: `نود معرفة رأيك حول الخدمة المقدمة في **${channel.name}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
+description: `نود معرفة رأيك حول الخدمة المقدمة في **${ticket_claim}**.\nاختر تقييمك أدناه — لن يستغرق الأمر سوى ثانية!`,
 color: '#F1C40F',
 footer: { text: 'ملاحظاتك تساعدنا على تحسين خدمتنا.' },
 });
