@@ -122,7 +122,7 @@ const feedbackHandler = {
             embeds: [
                 new EmbedBuilder()
                     .setTitle('✅ شكرا لارسال تقييمك!')
-                    .setDescription(`تم ارسال تقييمك للدعم الفني **${ratingLabel}**.\n\n`)
+                    .setDescription(`تم ارسال تقييمك للدعم الفني **${ratingLabel}**.\n\nشكرا لتعاونك `)
                     .setColor(getColor('success'))
                     .setFooter({ text: 'Thank you for using our support system.' })
                     .setTimestamp(),
@@ -147,7 +147,7 @@ const declineHandler = {
             embeds: [
                 new EmbedBuilder()
                     .setTitle('👋لا توجد مشكلة!')
-                    .setDescription('You can always reach out again if you need further support.')
+                    .setDescription('شكرا لتعاونك.')
                     .setColor(getColor('default')),
             ],
             components: [],
