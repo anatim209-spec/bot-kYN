@@ -124,7 +124,7 @@ const feedbackHandler = {
                     .setTitle('✅ شكرا لارسال تقييمك!')
                     .setDescription(`تم ارسال تقييمك للدعم الفني **${ratingLabel}**.\n\nشكرا لتعاونك `)
                     .setColor(getColor('success'))
-                    .setFooter({ text: 'Thank you for using our support system.' })
+                    .setFooter({ text: 'شكرا لارسال للدعم الفني عن مشكلتك.' })
                     .setTimestamp(),
             ],
             components: [],
