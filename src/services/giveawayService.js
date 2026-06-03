@@ -194,7 +194,7 @@ export function createGiveawayEmbed(giveaway, status, winners = []) {
             embed.addFields({ name: '🎯 الفائزون', value: winnerDisplay, inline: false });
         } else {
             const endTime = giveaway.endsAt || giveaway.endTime;
-            embed.addFields({ name: '⏰ تنتغي بعد', value: `<t:${Math.floor(endTime / 1000)}:R>`, inline: false });
+            embed.addFields({ name: '⏰ تنتهي بعد', value: `<t:${Math.floor(endTime / 1000)}:R>`, inline: false });
         }
 
         embed.setTimestamp();
